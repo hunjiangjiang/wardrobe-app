@@ -1,0 +1,11 @@
+{
+  "appId": "com.wardrobe.app",
+  "appName": "我的衣橱",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": true
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

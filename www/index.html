@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#f7f5f6">
+<title>我的衣橱</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>我的衣橱</h1>
+  <nav class="tabs">
+    <button class="tab active" data-tab="items">衣服</button>
+    <button class="tab" data-tab="cats">分类</button>
+    <button class="tab" data-tab="outfits">搭配</button>
+  </nav>
+</header>
+
+<main>
+  <!-- 衣服 -->
+  <section id="page-items" class="page">
+    <div id="filterBar" class="chips"></div>
+    <div id="itemGrid" class="grid"></div>
+    <p id="emptyItems" class="empty">还没有衣服<br>点右下角的「+」添加第一件</p>
+  </section>
+
+  <!-- 分类 -->
+  <section id="page-cats" class="page" hidden>
+    <div class="addrow">
+      <input id="newCat" type="text" placeholder="新分类名称，如：上衣 / 裤子 / 鞋" maxlength="12">
+      <button id="addCatBtn" class="primary">添加</button>
+    </div>
+    <ul id="catList" class="list"></ul>
+    <p id="emptyCats" class="empty">还没有分类<br>先建几个分类，比如：上衣、裤子、裙子、鞋</p>
+  </section>
+
+  <!-- 搭配 -->
+  <section id="page-outfits" class="page" hidden>
+    <div id="outfitGrid" class="grid"></div>
+    <p id="emptyOutfits" class="empty">还没有搭配<br>点右下角的「+」把几件衣服配成一套</p>
+  </section>
+</main>
+
+<button id="fab" class="fab" aria-label="添加">+</button>
+
+<!-- ===== 衣服编辑 ===== -->
+<div id="itemModal" class="modal" hidden>
+  <div class="sheet">
+    <h2 id="itemTitle">添加衣服</h2>
+
+    <label class="photoBox">
+      <img id="photoPreview" alt="" hidden>
+      <span id="photoHint">📷 拍照 / 选择照片</span>
+      <input id="photoInput" type="file" accept="image/*" hidden>
+    </label>
+
+    <label class="field">名称
+      <input id="itemName" type="text" placeholder="如：米色针织衫" maxlength="30">
+    </label>
+
+    <label class="field">分类
+      <select id="itemCat"></select>
+    </label>
+
+    <div class="row">
+      <label class="field">颜色
+        <input id="itemColor" type="text" placeholder="如：米色" maxlength="10">
+      </label>
+      <label class="field">季节
+        <select id="itemSeason">
+          <option value="">不限</option>
+          <option>春</option><option>夏</option><option>秋</option>
+          <option>冬</option><option>四季</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="field">备注
+      <textarea id="itemNote" rows="2" placeholder="尺码、品牌、搭配想法…" maxlength="120"></textarea>
+    </label>
+
+    <div class="actions">
+      <button id="itemDelete" class="danger" hidden>删除</button>
+      <button id="itemCancel">取消</button>
+      <button id="itemSave" class="primary">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 搭配创建 ===== -->
+<div id="outfitModal" class="modal" hidden>
+  <div class="sheet">
+    <h2>创建搭配</h2>
+
+    <label class="field">搭配名称
+      <input id="outfitName" type="text" placeholder="如：通勤周三 / 约会look" maxlength="20">
+    </label>
+
+    <div class="pickTitle">选择单品（可多选）</div>
+    <div id="outfitPicker" class="grid small"></div>
+    <p id="pickerEmpty" class="empty small">你还没有添加衣服，先去「衣服」页添加吧</p>
+
+    <label class="field">备注
+      <textarea id="outfitNote" rows="2" placeholder="场合、季节、颜色搭配…" maxlength="120"></textarea>
+    </label>
+
+    <div class="actions">
+      <button id="outfitCancel">取消</button>
+      <button id="outfitSave" class="primary">保存搭配</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 搭配查看 ===== -->
+<div id="outfitView" class="modal" hidden>
+  <div class="sheet">
+    <h2 id="outfitViewTitle">搭配</h2>
+    <div id="outfitViewGrid" class="grid small"></div>
+    <p id="outfitViewNote" class="note"></p>
+    <div class="actions">
+      <button id="outfitViewDelete" class="danger">删除</button>
+      <button id="outfitViewClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
